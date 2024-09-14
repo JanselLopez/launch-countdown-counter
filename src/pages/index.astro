@@ -1,16 +1,143 @@
 ---
-
+import { Image } from "astro:assets";
+import Ground from '../assets/pattern-hills.svg'
+import Stars from '../assets/bg-stars.svg'
+import Facebook from '../assets/icon-facebook.svg'
+import Instagram from '../assets/icon-instagram.svg'
+import Pinterest from '../assets/icon-pinterest.svg'
+import { days, hours, minutes, seconds } from "../store";
+const labels = ['days', 'hours', 'minutes', 'seconds']
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/launch-countdown-counter/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class={'bg-gradient-to-t from-purple/60 from-10% to-purple-dark  h-dvh w-dvw m-0 flex items-center justify-center'}>
+		<Image src={Stars} alt={'stars'} class="absolute top-0 h-full w-full object-cover object-right"/>
+		<Image src={Ground} alt={'ground'} class={'absolute bottom-0 max-sm:h-1/4 object-cover object-right'}/>
+		<main class="uppercase m-auto absoulte flex flex-col items-center h-dvh w-dvw justify-evenly z-10">
+			<h1 class="text-3xl sm:text-lg px-8 text-center tracking-[.3rem] sm:tracking-[.5rem]">we're launching soon</h1>
+			<ul class="flex gap-4 sm:gap-8 text-3xl sm:text-7xl relative">
+				{
+					[days,hours,minutes,seconds].map((obj,idx)=>{
+						const it = obj.value
+						return <div class="relative">
+							<li class="time-wrapper shadow-[0_10px_0_#191a24] relative bg-dark-blue px-4 py-4 sm:py-8 w-[4.5rem] sm:w-32 text-center rounded-lg !text-soft-red">
+								<span class="time !text-soft-red">{(it<10?'0'+it:it)}</span>
+								<div class="w-1.5 h-3 bg-very-dark-blue rounded-r-full absolute left-0 top-[calc(50%-6px)]"></div>
+								<div class="w-1.5 h-3 bg-very-dark-blue rounded-l-full absolute right-0 top-[calc(50%-6px)]"></div>
+								<div class="time-cover bg-very-dark-blue/20 absolute left-0 top-0 h-1/2 w-full border-b border-b-very-dark-blue/20"></div>
+							</li>
+							<span class="absolute top-full max-sm:text-[9px] text-sm w-full text-center mt-6 !text-gray-blue tracking-[.3rem]">{labels[idx]}</span>
+							<div class={`absolute top-0 left-0 h-full after-time-global flip after-time-global-${idx}`}>
+								<div class="after-time-partial absolute top-0 h-1/2 z-10 overflow-hidden">
+									<li class="after-time-wrapper relative shadow-[0_10px_0_#191a24] bg-dark-blue px-4 py-4 sm:py-8 w-[4.5rem] sm:w-32 text-center rounded-lg !text-soft-red">
+										<span class="after-time !text-soft-red">{(it<10?'0'+it:it)}</span>
+										<div class="w-1.5 h-3 bg-very-dark-blue rounded-r-full absolute left-0 top-[calc(50%-6px)]"></div>
+										<div class="w-1.5 h-3 bg-very-dark-blue rounded-l-full absolute right-0 top-[calc(50%-6px)]"></div>
+										<div class="time-cover bg-very-dark-blue/20 absolute left-0 top-0 h-1/2 w-full border-b border-b-very-dark-blue/20"></div>
+									</li>
+								</div>
+							</div>
+						</div>
+					})
+				}
+				
+			</ul>
+			<ul class="flex gap-8 mt-32">
+				{
+					[Facebook, Pinterest, Instagram].map(it=>{
+						return <li>
+							<Image class={'text-soft-red w-7 h-7 object-contain'} src={it} alt={it.src} />
+						</li>
+					})
+				}
+			</ul>
+		</main>
 	</body>
 </html>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+	* {
+		@apply font-bold text-white;
+		font-family: 'Red Hat Text', sans-serif;
+	}
+	html{
+		@apply bg-very-dark-blue
+	}
+	@keyframes flip {
+		0% {
+			transform: rotateX(0deg);
+			opacity: 1;
+		}
+		30%{
+			opacity: 1;
+		}
+		55%{
+			opacity: 0;
+		}
+		100% {
+			transform: rotateX(180deg);
+			opacity: 0;
+		}
+	}
+	
+	.flipper {
+		animation: flip 1s infinite;
+	}
+</style>
+
+<script>
+	import { days, hours, minutes, seconds } from "../store"
+	const time = [days, hours, minutes, seconds]
+	const li = document.querySelectorAll('.time')
+	const checkTwoPlaces = (n:number) => {
+		return n<10?('0'+n):n.toString()
+	}
+	const fireAnimation = (idx:number) => {
+		setTimeout(()=>{
+			li[idx].innerHTML = checkTwoPlaces(time[idx].value)
+		},250)
+		const liAfter = document.querySelectorAll('.after-time')
+		liAfter[idx].innerHTML = checkTwoPlaces(time[idx].value+1)
+		const containerAnim = document.querySelector(`.after-time-global-${idx}`)
+		containerAnim?.classList.add('flipper')
+		setTimeout(()=>{
+			containerAnim?.classList.remove('flipper')
+		},990)
+		setTimeout(()=>{
+			liAfter[idx].innerHTML = checkTwoPlaces(time[idx].value)
+		},500)
+	}
+	const updateButtons = () => {
+		li.forEach((it,idx)=>{
+			it.innerHTML = checkTwoPlaces(time[idx].value)
+		})
+	}
+	setInterval(()=>{
+		seconds.set(seconds.value-1)
+		fireAnimation(3)
+		if(seconds.value === 0){
+			minutes.set(minutes.value-1)
+			seconds.set(60)
+			fireAnimation(2)
+			if(minutes.value === 0){
+				hours.set(hours.value-1)
+				minutes.set(60)
+				fireAnimation(1)
+				if(hours.value === 0){
+					days.set(days.value-1)
+					hours.set(24)
+					fireAnimation(0)
+				}
+			}
+		}
+		// updateButtons()
+	},1000)
+</script>

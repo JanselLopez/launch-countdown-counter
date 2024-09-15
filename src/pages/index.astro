@@ -18,37 +18,37 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 		<title>Jansel | Launch Countdown Timer</title>
 	</head>
 	<body class={'bg-gradient-to-t from-purple via-purple to-purple-dark  h-dvh w-dvw m-0 flex items-center justify-center'}>
-		<Image src={Stars} alt={'stars'} class="absolute top-0 h-full w-full object-cover sm:object-contain object-right"/>
-		<Image src={Ground} alt={'ground'} class={'absolute bottom-0 max-sm:h-1/4 object-cover object-right'}/>
+		<Image role={'img'} src={Stars} alt={'stars'} class="absolute top-0 h-full w-full object-cover sm:object-contain object-right"/>
+		<Image role={'img'} src={Ground} alt={'ground'} class={'absolute bottom-0 max-sm:h-1/4 object-cover object-right'}/>
 		<main class="uppercase m-auto absoulte flex flex-col items-center h-dvh w-dvw justify-between z-10">
 			<h1 class="text-3xl sm:text-[1.35rem] px-8 text-center tracking-[.3rem] sm:tracking-[.5rem] mt-[8.2rem]">we're launching soon</h1>
-			<ul class="flex gap-4 sm:gap-8 text-3xl sm:text-[5rem] relative mt-8 mb-56">
+			<div class="flex gap-4 sm:gap-8 text-3xl sm:text-[5rem] relative mt-8 mb-56">
 				{
 					[days,hours,minutes,seconds].map((obj,idx)=>{
 						const it = obj.value
 						return <div class="relative">
-							<li class="time-wrapper">
+							<div class="time-wrapper">
 								<span class="time">{(it<10?'0'+it:it)}</span>
 								<div class="semicircle semicircle-left "></div>
 								<div class="semicircle semicircle-right"></div>
 								<div class="time-cover"></div>
-							</li>
+							</div>
 							<span class="absolute top-full max-sm:text-[9px] text-sm w-full text-center mt-6 !text-gray-blue tracking-[.3rem]">{labels[idx]}</span>
 							<div class={`absolute top-0 left-0 h-full after-time-global flip after-time-global-${idx}`}>
 								<div class="after-time-partial absolute top-0 h-1/2 z-10 overflow-hidden">
-									<li class="after-time-wrapper">
+									<div class="after-time-wrapper">
 										<span class="after-time">{(it<10?'0'+it:it)}</span>
 										<div class="semicircle semicircle-left"></div>
 										<div class="semicircle semicircle-right"></div>
 										<div class="time-cover"></div>
-									</li>
+									</div>
 								</div>
 							</div>
 						</div>
 					})
 				}
 				
-			</ul>
+			</div>
 			<ul class="flex gap-8 mb-[4.5rem]">
 				{
 					[Facebook, Pinterest, Instagram].map(it=>{

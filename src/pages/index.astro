@@ -15,32 +15,32 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 		<link rel="icon" type="image/svg+xml" href="/launch-countdown-counter/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Jansel | Launch Countdown Timer</title>
 	</head>
-	<body class={'bg-gradient-to-t from-purple/60 from-10% to-purple-dark  h-dvh w-dvw m-0 flex items-center justify-center'}>
-		<Image src={Stars} alt={'stars'} class="absolute top-0 h-full w-full object-cover object-right"/>
+	<body class={'bg-gradient-to-t from-purple via-purple to-purple-dark  h-dvh w-dvw m-0 flex items-center justify-center'}>
+		<Image src={Stars} alt={'stars'} class="absolute top-0 h-full w-full object-cover sm:object-contain object-right"/>
 		<Image src={Ground} alt={'ground'} class={'absolute bottom-0 max-sm:h-1/4 object-cover object-right'}/>
-		<main class="uppercase m-auto absoulte flex flex-col items-center h-dvh w-dvw justify-evenly z-10">
-			<h1 class="text-3xl sm:text-lg px-8 text-center tracking-[.3rem] sm:tracking-[.5rem]">we're launching soon</h1>
-			<ul class="flex gap-4 sm:gap-8 text-3xl sm:text-7xl relative">
+		<main class="uppercase m-auto absoulte flex flex-col items-center h-dvh w-dvw justify-between z-10">
+			<h1 class="text-3xl sm:text-[1.35rem] px-8 text-center tracking-[.3rem] sm:tracking-[.5rem] mt-[8.2rem]">we're launching soon</h1>
+			<ul class="flex gap-4 sm:gap-8 text-3xl sm:text-[5rem] relative mt-8 mb-56">
 				{
 					[days,hours,minutes,seconds].map((obj,idx)=>{
 						const it = obj.value
 						return <div class="relative">
-							<li class="time-wrapper shadow-[0_10px_0_#191a24] relative bg-dark-blue px-4 py-4 sm:py-8 w-[4.5rem] sm:w-32 text-center rounded-lg !text-soft-red">
-								<span class="time !text-soft-red">{(it<10?'0'+it:it)}</span>
-								<div class="w-1.5 h-3 bg-very-dark-blue rounded-r-full absolute left-0 top-[calc(50%-6px)]"></div>
-								<div class="w-1.5 h-3 bg-very-dark-blue rounded-l-full absolute right-0 top-[calc(50%-6px)]"></div>
-								<div class="time-cover bg-very-dark-blue/20 absolute left-0 top-0 h-1/2 w-full border-b border-b-very-dark-blue/20"></div>
+							<li class="time-wrapper">
+								<span class="time">{(it<10?'0'+it:it)}</span>
+								<div class="semicircle semicircle-left "></div>
+								<div class="semicircle semicircle-right"></div>
+								<div class="time-cover"></div>
 							</li>
 							<span class="absolute top-full max-sm:text-[9px] text-sm w-full text-center mt-6 !text-gray-blue tracking-[.3rem]">{labels[idx]}</span>
 							<div class={`absolute top-0 left-0 h-full after-time-global flip after-time-global-${idx}`}>
 								<div class="after-time-partial absolute top-0 h-1/2 z-10 overflow-hidden">
-									<li class="after-time-wrapper relative shadow-[0_10px_0_#191a24] bg-dark-blue px-4 py-4 sm:py-8 w-[4.5rem] sm:w-32 text-center rounded-lg !text-soft-red">
-										<span class="after-time !text-soft-red">{(it<10?'0'+it:it)}</span>
-										<div class="w-1.5 h-3 bg-very-dark-blue rounded-r-full absolute left-0 top-[calc(50%-6px)]"></div>
-										<div class="w-1.5 h-3 bg-very-dark-blue rounded-l-full absolute right-0 top-[calc(50%-6px)]"></div>
-										<div class="time-cover bg-very-dark-blue/20 absolute left-0 top-0 h-1/2 w-full border-b border-b-very-dark-blue/20"></div>
+									<li class="after-time-wrapper">
+										<span class="after-time">{(it<10?'0'+it:it)}</span>
+										<div class="semicircle semicircle-left"></div>
+										<div class="semicircle semicircle-right"></div>
+										<div class="time-cover"></div>
 									</li>
 								</div>
 							</div>
@@ -49,11 +49,11 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 				}
 				
 			</ul>
-			<ul class="flex gap-8 mt-32">
+			<ul class="flex gap-8 mb-[4.5rem]">
 				{
 					[Facebook, Pinterest, Instagram].map(it=>{
 						return <li>
-							<Image class={'text-soft-red w-7 h-7 object-contain'} src={it} alt={it.src} />
+							<Image class={'text-soft-red w-6 h-6'} src={it} alt={it.src} />
 						</li>
 					})
 				}
@@ -91,6 +91,27 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 	.flipper {
 		animation: flip 1s infinite;
 	}
+
+	.time,.after-time{
+		@apply !text-soft-red tracking-tight;
+	}
+	.semicircle{
+		@apply w-1.5 h-3 bg-very-dark-blue absolute top-[calc(50%-6px)]
+	}	
+	.semicircle-left{
+		@apply rounded-r-full left-0
+	}				
+	.semicircle-right{
+		@apply rounded-l-full right-0
+	}		
+	.time-cover{
+		@apply bg-purple-dark/30 absolute left-0 top-0 h-1/2 w-full border-b border-b-purple-dark/10
+	}		
+	
+	.time-wrapper,.after-time-wrapper{
+		@apply shadow-[0_10px_0_#191a24] relative bg-dark-blue px-4 py-4 sm:py-[3.3rem] w-[4.5rem] sm:w-[9.2rem] text-center rounded-lg !text-soft-red
+	}
+
 </style>
 
 <script>

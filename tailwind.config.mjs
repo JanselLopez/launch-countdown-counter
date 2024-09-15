@@ -9,8 +9,8 @@ export default {
 			'dark-blue':'hsl(236, 21%, 26%)',
 			'very-dark-blue':'hsl(235, 16%, 14%)',
 			'darkest-blue':'hsl(234, 17%, 12%)',
-			'purple':'#2F2439',
-			'purple-dark':'#1A1823'
+			'purple':'#241E2C',
+			'purple-dark':'#1E1E2A',
 		},
 		extend: {},
 	},

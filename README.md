@@ -1,47 +1,85 @@
-# Astro Starter Kit: Minimal
+# Frontend Mentor - Launch countdown timer solution
 
-```sh
-npm create astro@latest -- --template minimal
-```
+  
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+This is a solution to the [Launch countdown timer challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/launch-countdown-timer-N0XkGfyz-). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+  
 
-## 🚀 Project Structure
+## Table of contents
 
-Inside of your Astro project, you'll see the following folders and files:
+  
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- [Overview](#overview)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- [The challenge](#the-challenge)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- [Screenshot](#screenshot)
 
-Any static assets, like images, can be placed in the `public/` directory.
+- [Links](#links)
 
-## 🧞 Commands
+- [My process](#my-process)
 
-All commands are run from the root of the project, from a terminal:
+- [Built with](#built-with)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- [Author](#author)
 
-## 👀 Want to learn more?
+  
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Note: Delete this note and update the table of contents based on what sections you keep.**
+
+  
+
+## Overview
+
+  
+
+### The challenge
+
+  
+
+Users should be able to:
+
+  
+
+- See hover states for all interactive elements on the page
+
+- See a live countdown timer that ticks down every second (start the count at 14 days)
+
+-  **Bonus**: When a number changes, make the card flip from the middle
+
+  
+
+### Screenshot
+
+
+![screenshot](https://raw.githubusercontent.com/JanselLopez/launch-countdown-counter/main/Screen%20Shot%202024-09-15%20at%2016.36.15.png)
+
+### Links
+
+  
+
+- Solution URL: [https://github.com/JanselLopez/launch-countdown-counter](https://github.com/JanselLopez/launch-countdown-counter)
+
+- Live Site URL: [https://jansellopez.github.io/launch-countdown-counter/](https://jansellopez.github.io/launch-countdown-counter/)
+
+  
+
+## My process
+
+  
+
+### Built with
+
+- [CSS filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) 
+- [CSS keyframes](https://developer.mozilla.org/es/docs/Web/CSS/@keyframes)
+- [Astro](https://astro.build/) - JS library
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+
+## Author
+
+  
+
+- Linkedin - [Jansel López Bouza](https://www.linkedin.com/in/jansel-lopez-bouza/)
+- Frontend Mentor - [@JanselLopez](https://www.frontendmentor.io/profile/JanselLopez)
+- Codepen - [@JanselLopez](https://codepen.io/JanselLopez)

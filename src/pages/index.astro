@@ -53,7 +53,7 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 				{
 					[Facebook, Pinterest, Instagram].map(it=>{
 						return <li>
-							<Image class={'text-soft-red w-6 h-6'} src={it} alt={it.src} />
+							<Image class={'hover:force-soft-red cursor-pointer w-6 h-6'} src={it} alt={it.src} />
 						</li>
 					})
 				}
@@ -64,6 +64,14 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	@layer components {
+		.force-soft-red{
+			filter: invert(71%) sepia(37%) saturate(6184%) hue-rotate(307deg) brightness(95%) contrast(108%);
+		}
+	}
 	* {
 		@apply font-bold text-white;
 		font-family: 'Red Hat Text', sans-serif;
@@ -111,7 +119,7 @@ const labels = ['days', 'hours', 'minutes', 'seconds']
 	.time-wrapper,.after-time-wrapper{
 		@apply shadow-[0_10px_0_#191a24] relative bg-dark-blue px-4 py-4 sm:py-[3.3rem] w-[4.5rem] sm:w-[9.2rem] text-center rounded-lg !text-soft-red
 	}
-
+	
 </style>
 
 <script>
